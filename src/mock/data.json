@@ -1,0 +1,271 @@
+{
+  "containers": [
+    {
+      "id": "payment-service",
+      "name": "payment-service",
+      "status": "RUNNING",
+      "isStateful": false,
+      "allocatedCores": 4.0,
+      "allocatedMemoryMb": 4096,
+      "currentCpu": 85.2,
+      "currentMemoryMb": 3820,
+      "currentNetRxKb": 1.4,
+      "currentNetTxKb": 0.8,
+      "currentIops": 12,
+      "anomalyScore": 0.76,
+      "anomalyTag": "FAST_MEMORY_LEAK",
+      "anomalySeverity": "CRITICAL",
+      "anomalyExplanation": "Sustained linear memory heap growth (+30 MB/min) approaching cgroup limit. Anomaly score 0.76 exceeds threshold 0.6618.",
+      "circuitBreaker": {
+        "state": "CLOSED",
+        "consecutiveFailures": 0,
+        "cooldownSeconds": 60,
+        "lastTrippedAt": null
+      },
+      "ttcForecast": {
+        "hasLeak": true,
+        "urgency": "CRITICAL",
+        "timeToCrashSeconds": 3120,
+        "timeToCrashFormatted": "52 minutes",
+        "crashTimestamp": "2026-11-23T16:16:32Z",
+        "growthSlopeMbPerHour": 1800,
+        "leakRateMbPerMin": 30.0,
+        "memoryLimitMb": 4096,
+        "currentMemoryMb": 3820,
+        "restartDetected": true,
+        "restartTimestamp": "2026-11-23T14:20:00Z",
+        "restartDropPercent": 84.8
+      },
+      "finops": {
+        "p95CpuPercent": 76.0,
+        "p95MemoryMb": 960,
+        "recommendedCores": 0.95,
+        "recommendedMemoryMb": 1200,
+        "slackRatioCpu": 0.7625,
+        "slackRatioRam": 0.707,
+        "overallSlackRatio": 0.7348,
+        "efficiencyGrade": "F",
+        "monthlyWasteEur": 44.09,
+        "gitopsDiff": "--- a/docker-compose.yml\toriginal allocation\n+++ b/docker-compose.yml\toptiops right-sized allocation\n@@ -6,4 +6,4 @@\n         limits:\n-          cpus: '4.0'\n-          memory: 4096M\n+          cpus: '0.95'\n+          memory: 1200M"
+      }
+    },
+    {
+      "id": "auth-api",
+      "name": "auth-api",
+      "status": "RUNNING",
+      "isStateful": false,
+      "allocatedCores": 2.0,
+      "allocatedMemoryMb": 2048,
+      "currentCpu": 18.5,
+      "currentMemoryMb": 420,
+      "currentNetRxKb": 45.2,
+      "currentNetTxKb": 38.1,
+      "currentIops": 8,
+      "anomalyScore": 0.22,
+      "anomalyTag": "NOMINAL_OPERATION",
+      "anomalySeverity": "NOMINAL",
+      "anomalyExplanation": "Metrics within nominal bounds.",
+      "circuitBreaker": {
+        "state": "CLOSED",
+        "consecutiveFailures": 0,
+        "cooldownSeconds": 60,
+        "lastTrippedAt": null
+      },
+      "ttcForecast": {
+        "hasLeak": false,
+        "urgency": "NOMINAL",
+        "timeToCrashSeconds": null,
+        "timeToCrashFormatted": "No leak detected",
+        "crashTimestamp": null,
+        "growthSlopeMbPerHour": 0.5,
+        "leakRateMbPerMin": 0.0,
+        "memoryLimitMb": 2048,
+        "currentMemoryMb": 420,
+        "restartDetected": false,
+        "restartTimestamp": null,
+        "restartDropPercent": 0.0
+      },
+      "finops": {
+        "p95CpuPercent": 24.0,
+        "p95MemoryMb": 512,
+        "recommendedCores": 0.3,
+        "recommendedMemoryMb": 640,
+        "slackRatioCpu": 0.85,
+        "slackRatioRam": 0.6875,
+        "overallSlackRatio": 0.7687,
+        "efficiencyGrade": "F",
+        "monthlyWasteEur": 38.45,
+        "gitopsDiff": "--- a/docker-compose.yml\toriginal allocation\n+++ b/docker-compose.yml\toptiops right-sized allocation\n@@ -18,4 +18,4 @@\n         limits:\n-          cpus: '2.0'\n-          memory: 2048M\n+          cpus: '0.30'\n+          memory: 640M"
+      }
+    },
+    {
+      "id": "postgres-master",
+      "name": "postgres-master",
+      "status": "RUNNING",
+      "isStateful": true,
+      "allocatedCores": 8.0,
+      "allocatedMemoryMb": 16384,
+      "currentCpu": 35.0,
+      "currentMemoryMb": 12400,
+      "currentNetRxKb": 120.5,
+      "currentNetTxKb": 240.2,
+      "currentIops": 340,
+      "anomalyScore": 0.15,
+      "anomalyTag": "NOMINAL_OPERATION",
+      "anomalySeverity": "NOMINAL",
+      "anomalyExplanation": "High I/O consistent with database workload.",
+      "circuitBreaker": {
+        "state": "CLOSED",
+        "consecutiveFailures": 0,
+        "cooldownSeconds": 300,
+        "lastTrippedAt": null
+      },
+      "ttcForecast": {
+        "hasLeak": false,
+        "urgency": "NOMINAL",
+        "timeToCrashSeconds": null,
+        "timeToCrashFormatted": "Stable (Cache Buffers)",
+        "crashTimestamp": null,
+        "growthSlopeMbPerHour": 2.0,
+        "leakRateMbPerMin": 0.03,
+        "memoryLimitMb": 16384,
+        "currentMemoryMb": 12400,
+        "restartDetected": false,
+        "restartTimestamp": null,
+        "restartDropPercent": 0.0
+      },
+      "finops": {
+        "p95CpuPercent": 48.0,
+        "p95MemoryMb": 13800,
+        "recommendedCores": 4.0,
+        "recommendedMemoryMb": 16384,
+        "slackRatioCpu": 0.4,
+        "slackRatioRam": 0.0,
+        "overallSlackRatio": 0.2,
+        "efficiencyGrade": "B",
+        "monthlyWasteEur": 15.2,
+        "gitopsDiff": "# Stateful database workload: Automated resize deferred to human DBA."
+      }
+    }
+  ],
+  "uslModel": {
+    "gamma": 44.45,
+    "alpha": 0.0566,
+    "beta": 0.001013,
+    "rSquared": 0.9998,
+    "optimalConcurrency": 30.5,
+    "maxThroughputRps": 378.7,
+    "kneeThroughputRps": 279.5,
+    "recommendedVcpu": 3,
+    "recommendedRamGb": 4.0,
+    "curvePoints": [
+      {
+        "concurrency": 1,
+        "uslThroughput": 44.5,
+        "amdahlThroughput": 44.5,
+        "linearThroughput": 44.5,
+        "measuredLatencyMs": 22.5
+      },
+      {
+        "concurrency": 2,
+        "uslThroughput": 84.1,
+        "amdahlThroughput": 84.2,
+        "linearThroughput": 89.0,
+        "measuredLatencyMs": 23.8
+      },
+      {
+        "concurrency": 4,
+        "uslThroughput": 152.0,
+        "amdahlThroughput": 153.1,
+        "linearThroughput": 178.0,
+        "measuredLatencyMs": 26.3
+      },
+      {
+        "concurrency": 8,
+        "uslThroughput": 249.8,
+        "amdahlThroughput": 257.2,
+        "linearThroughput": 356.0,
+        "measuredLatencyMs": 32.0
+      },
+      {
+        "concurrency": 16,
+        "uslThroughput": 339.2,
+        "amdahlThroughput": 369.8,
+        "linearThroughput": 712.0,
+        "measuredLatencyMs": 47.1
+      },
+      {
+        "concurrency": 24,
+        "uslThroughput": 372.1,
+        "amdahlThroughput": 427.5,
+        "linearThroughput": 1068.0,
+        "measuredLatencyMs": 64.5
+      },
+      {
+        "concurrency": 30,
+        "uslThroughput": 378.7,
+        "amdahlThroughput": 454.1,
+        "linearThroughput": 1335.0,
+        "measuredLatencyMs": 79.2
+      },
+      {
+        "concurrency": 40,
+        "uslThroughput": 370.4,
+        "amdahlThroughput": 482.0,
+        "linearThroughput": 1780.0,
+        "measuredLatencyMs": 108.0
+      },
+      {
+        "concurrency": 48,
+        "uslThroughput": 354.2,
+        "amdahlThroughput": 497.1,
+        "linearThroughput": 2136.0,
+        "measuredLatencyMs": 135.5
+      },
+      {
+        "concurrency": 64,
+        "uslThroughput": 313.8,
+        "amdahlThroughput": 516.4,
+        "linearThroughput": 2848.0,
+        "measuredLatencyMs": 204.0
+      }
+    ],
+    "skuRecommendations": [
+      {
+        "tier": "COST_OPTIMIZED",
+        "provider": "Hetzner",
+        "instanceName": "cx32",
+        "vcpuCount": 4,
+        "ramGb": 8.0,
+        "monthlyCostEur": 7.49,
+        "badge": "Best Value (3x Target Capacity)"
+      },
+      {
+        "tier": "COMPUTE_OPTIMIZED",
+        "provider": "Hetzner",
+        "instanceName": "ccx33",
+        "vcpuCount": 8,
+        "ramGb": 32.0,
+        "monthlyCostEur": 49.9,
+        "badge": "100% Dedicated CPU Cores"
+      },
+      {
+        "tier": "HIGH_AVAILABILITY_CLUSTER",
+        "provider": "Hetzner",
+        "instanceName": "2x cx32 Multi-Zone",
+        "vcpuCount": 8,
+        "ramGb": 16.0,
+        "monthlyCostEur": 14.98,
+        "badge": "Active-Active Resilient"
+      }
+    ]
+  },
+  "clusterFinops": {
+    "totalMonthlyWasteEur": 142.3,
+    "totalYearlyWasteEur": 1707.6,
+    "overallEfficiencyGrade": "D",
+    "overallSlackRatio": 0.425,
+    "auditedContainersCount": 4,
+    "overprovisionedCount": 3
+  }
+}

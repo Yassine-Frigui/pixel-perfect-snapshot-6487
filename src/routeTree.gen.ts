@@ -10,33 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CrashForecastRouteImport } from './routes/crash-forecast'
+import { Route as FinopsRouteImport } from './routes/finops'
+import { Route as SafetyRouteImport } from './routes/safety'
+import { Route as ServerFittingRouteImport } from './routes/server-fitting'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CrashForecastRoute = CrashForecastRouteImport.update({
+  id: '/crash-forecast',
+  path: '/crash-forecast',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinopsRoute = FinopsRouteImport.update({
+  id: '/finops',
+  path: '/finops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SafetyRoute = SafetyRouteImport.update({
+  id: '/safety',
+  path: '/safety',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServerFittingRoute = ServerFittingRouteImport.update({
+  id: '/server-fitting',
+  path: '/server-fitting',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/crash-forecast': typeof CrashForecastRoute
+  '/finops': typeof FinopsRoute
+  '/safety': typeof SafetyRoute
+  '/server-fitting': typeof ServerFittingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/crash-forecast': typeof CrashForecastRoute
+  '/finops': typeof FinopsRoute
+  '/safety': typeof SafetyRoute
+  '/server-fitting': typeof ServerFittingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/crash-forecast': typeof CrashForecastRoute
+  '/finops': typeof FinopsRoute
+  '/safety': typeof SafetyRoute
+  '/server-fitting': typeof ServerFittingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/crash-forecast' | '/finops' | '/safety' | '/server-fitting'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/crash-forecast' | '/finops' | '/safety' | '/server-fitting'
+  id:
+    | '__root__'
+    | '/'
+    | '/crash-forecast'
+    | '/finops'
+    | '/safety'
+    | '/server-fitting'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CrashForecastRoute: typeof CrashForecastRoute
+  FinopsRoute: typeof FinopsRoute
+  SafetyRoute: typeof SafetyRoute
+  ServerFittingRoute: typeof ServerFittingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +94,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/crash-forecast': {
+      id: '/crash-forecast'
+      path: '/crash-forecast'
+      fullPath: '/crash-forecast'
+      preLoaderRoute: typeof CrashForecastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finops': {
+      id: '/finops'
+      path: '/finops'
+      fullPath: '/finops'
+      preLoaderRoute: typeof FinopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/safety': {
+      id: '/safety'
+      path: '/safety'
+      fullPath: '/safety'
+      preLoaderRoute: typeof SafetyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/server-fitting': {
+      id: '/server-fitting'
+      path: '/server-fitting'
+      fullPath: '/server-fitting'
+      preLoaderRoute: typeof ServerFittingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CrashForecastRoute: CrashForecastRoute,
+  FinopsRoute: FinopsRoute,
+  SafetyRoute: SafetyRoute,
+  ServerFittingRoute: ServerFittingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
